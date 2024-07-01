@@ -141,7 +141,7 @@ function SideDrawer() {
             </Text>
           </Button>
         </Tooltip>
-        <Text fontSize="3xl" fontFamily="Work sans">
+        <Text fontSize="2xl" fontFamily="Work sans">
           Quik-Chat
         </Text>
         <div>
