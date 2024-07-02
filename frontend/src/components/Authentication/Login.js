@@ -41,7 +41,7 @@ const Login = () => {
       };
 
       const { data } = await axios.post(
-        "https://quik-chat-backend.onrender.com/api/user/login",
+        "/api/user/login",
         { email, password },
         config
       );
