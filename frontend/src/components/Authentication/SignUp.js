@@ -51,7 +51,7 @@ const Signup = () => {
         },
       };
       const { data } = await axios.post(
-        "https://quik-chat-backend.onrender.com/api/user",
+        "/api/user",
         {
           name,
           email,
