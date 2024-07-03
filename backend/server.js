@@ -22,9 +22,9 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.use('https://quik-chat-backend.onrender.com/api/user', userRoutes);
-app.use('https://quik-chat-backend.onrender.com/api/chat', chatRoutes);
-app.use('https://quik-chat-backend.onrender.com/api/message', messageRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/chat', chatRoutes);
+app.use('/api/message', messageRoutes);
 
 // ---------------------------Deployment-------------------------
 
