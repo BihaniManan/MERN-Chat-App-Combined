@@ -17,14 +17,14 @@ app.use(express.json()); // to accept JSON data
 
 // Configure CORS
 const corsOptions = {
-    origin: 'https://6684f05a6a58b69c10b79c24--remarkable-yeot-531615.netlify.app',
+    origin: 'https://quik-chat-frontend.onrender.com',
     optionsSuccessStatus: 200 // Some legacy browsers choke on 204
 };
 app.use(cors(corsOptions));
 
-app.use('/api/user', userRoutes);
-app.use('/api/chat', chatRoutes);
-app.use('/api/message', messageRoutes);
+app.use('https://quik-chat-backend.onrender.com/api/user', userRoutes);
+app.use('https://quik-chat-backend.onrender.com/api/chat', chatRoutes);
+app.use('https://quik-chat-backend.onrender.com/api/message', messageRoutes);
 
 // ---------------------------Deployment-------------------------
 
