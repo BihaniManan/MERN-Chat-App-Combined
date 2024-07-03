@@ -8,12 +8,19 @@ const path = require("path");
 const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 require('dotenv').config({ path: path.resolve(__dirname, './.env') });
 const messageRoutes = require("./routes/messageRoutes");
+const cors = require('cors'); // Import the cors package
 
 connectDB();
 const app = express();
 
 app.use(express.json()); // to accept JSON data
 
+// Configure CORS
+const corsOptions = {
+    origin: 'https://6684f05a6a58b69c10b79c24--remarkable-yeot-531615.netlify.app',
+    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+};
+app.use(cors(corsOptions));
 
 app.use('/api/user', userRoutes);
 app.use('/api/chat', chatRoutes);
@@ -22,14 +29,13 @@ app.use('/api/message', messageRoutes);
 // ---------------------------Deployment-------------------------
 
 const __dirname1 = path.resolve();
-if(process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname1, "/frontend/build")));
 
-    app.get("*", (req, res) => 
+    app.get("*", (req, res) =>
         res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
     );
-}
-else {
+} else {
     app.get("/", (req, res) => {
         res.send("API is Running Successfully");
     });
@@ -49,7 +55,7 @@ const server = app.listen(
 const io = require("socket.io")(server, {
     pingTimeout: 60000,
     cors: {
-        origin: "*",
+        origin: "*", // Update this if you want to restrict origins
     },
 });
 
@@ -92,5 +98,5 @@ io.on("connection", (socket) => {
     socket.off("setup", () => {
         console.log("USER DISCONNECTED");
         socket.leave(userData._id);
-    })
+    });
 });
